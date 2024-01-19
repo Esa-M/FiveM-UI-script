@@ -10,7 +10,7 @@ local function StartProgressBar(message, length, params)
 
     -- Freeze the Player if requested
     if ProgressBarData.FreezePlayer then
-        FreezeEntityPosition(PlayerPedId(), ProgressBarData.FreezePlayer)
+        FreezeEntityPosition(PlayerPedId(), true)
     end
 
     -- Send meesage to the NUI
@@ -19,28 +19,26 @@ local function StartProgressBar(message, length, params)
         length = length,
         message = message
     })
-end
 
-RegisterNUICallback("progress_completed", function (data, cb)
-    if ProgressBarData ~= nil then
-        -- Unfreeze Player
-        if ProgressBarData.FreezePlayer then
-            FreezeEntityPosition(PlayerPedId(), false)
+    ProgressBarData.length = length
+    while ProgressBarData ~= nil do
+        if ProgressBarData.length > 0 then
+            ProgressBarData.length = ProgressBarData.length - 1000
+        else
+            -- Unfreeze Player
+            if ProgressBarData.FreezePlayer then
+                FreezeEntityPosition(PlayerPedId(), false)
+            end
+
+            -- Invoke the completion callback function if any
+            if ProgressBarData.completionCallback then
+                ProgressBarData.completionCallback()
+            end
+            ProgressBarData = nil
         end
-
-        -- Invoke the completion callback function if any
-        if ProgressBarData.completionCallback then
-            ProgressBarData.completionCallback()
-        end
-
-        -- TODO: Use data from NUI
-
-        -- Reset the ProgressBarData
-        ProgressBarData = nil
+        Wait(1000)
     end
-
-    cb({})
-end)
+end
 
 local function CancelProgressBar()
     -- No progress bar is active
@@ -49,32 +47,34 @@ local function CancelProgressBar()
     end
 
     -- Send closing message to NUI
-    -- TODO: Will this work? it might not work if the NUI is a blocking one?
     SendNUIMessage({
         type = "CancelProgressBar"
     })
-end
 
-RegisterNUICallback("progress_cancelled", function (data, cb)
-    if (ProgressBarData ~= nil) then
-        -- Unfreeze Player
-        if ProgressBarData.FreezePlayer then
-            FreezeEntityPosition(PlayerPedId(), false)
-        end
-
-        -- Invoke the cancellation callback function if any
-        if ProgressBarData.cancellationCallback then
-            ProgressBarData.cancellationCallback()
-        end
-
-        -- Reset the ProgressBarData
-        ProgressBarData = nil
+    -- Unfreeze Player
+    if ProgressBarData.FreezePlayer then
+        FreezeEntityPosition(PlayerPedId(), false)
     end
 
-    cb({})
-end)
+    -- Invoke the cancellation callback function if any
+    if ProgressBarData.cancellationCallback then
+        ProgressBarData.cancellationCallback()
+    end
 
-ESX.RegisterInput("cancelprog", "[ProgressBar] Cancel Progressbar", "keyboard", "BACK", CancelProgressbar)
+    -- Reset the ProgressBarData
+    ProgressBarData = nil
+end
+
+RegisterCommand('startProgress', function(source, args, raw)
+    local length = args[1]
+    local message = args[2]
+
+    local params = {
+        FreezePlayer = true
+    }
+
+    StartProgressBar(message, tonumber(length), params)
+end)
 
 exports('StartProgressBar', StartProgressBar)
 exports('CancelProgressBar', CancelProgressBar)
