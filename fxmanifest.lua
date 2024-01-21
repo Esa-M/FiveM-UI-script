@@ -23,5 +23,9 @@ ui_page 'nui/index.html'
 files {
     'nui/index.html',
     'nui/index.css',
-    'nui/index.js'
+    'nui/index.js',
+    'nui/assets/color-picker.svg',
+    'nui/assets/paint.svg',
+    'nui/fonts/Forestion-Aged.otf',
+    'nui/fonts/Forestion-Aged.ttf'
 }

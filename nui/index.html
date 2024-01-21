@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Progress Bar</title>
 </head>
 <body>
-    <progress id="progbar" max="100" style="display: block"></progress>
+    <progress id="progbar" max="100" style="display: none"></progress>
     <div class="edit-menu">
-        <div class="edit-prog">
+        <div class="edit-prog" id="configure" style="display: block">
             <p class="title">Progress Bar Settings</p>
             <div class="edit-container">
                 <div class="prog-lists" id="prog-lists">
@@ -45,6 +46,7 @@
                 <p class="free-edit">Free Edit</p>
             </div>
             <button class="apply-btn" onclick="apply()">APPLY</button>
+            <button class="apply-btn" onclick="Cancel()">CANCEL</button>
         </div>
     </div>
 

@@ -22,6 +22,13 @@ window.addEventListener('message', (event) => {
                 currentStep++;
             }
         }, interval);
+    } else if (data.type === 'ConfigureProgressBar') {
+        let configBar = document.getElementById('configure');
+        configBar.style.display = 'block';
+    } else if (data.type === 'SetProgressBar') {
+        document.getElementById('prog-preview').textContent = data.text;
+        document.getElementById('prog-preview').style.backgroundColor =
+            data.color;
     }
 });
 showContent(document.querySelector('.progs.active')); // initial active
@@ -45,13 +52,32 @@ function setColor(event) {
 }
 
 function changeColor() {
-    document.getElementById('prog-preview').style.backgroundColor = document.getElementById('create-color').value;
+    document.getElementById('prog-preview').style.backgroundColor =
+        document.getElementById('create-color').value;
 }
 
 function apply() {
     const selectedData = {
         selectedText: document.getElementById('prog-preview').textContent,
-        selectedColor: document.getElementById('prog-preview').style.backgroundColor
+        selectedColor:
+            document.getElementById('prog-preview').style.backgroundColor,
     };
     localStorage.setItem('selectedData', JSON.stringify(selectedData));
+    axios.post(`https://${GetParentResourceName()}/StoreConfigData`, {
+        selectedData: selectedData,
+    });
+}
+
+function Cancel() {
+    //hide UI from front end
+    let editProgDiv = document.getElementById('configure');
+    editProgDiv.style.display = 'none';
+
+    axios.post(`https://${GetParentResourceName()}/StoreConfigData`)
+        .then(response => {
+            console.log('POST request successful', response);
+        })
+        .catch(error => {
+            console.error('Error during POST request', error);
+        });
 }
