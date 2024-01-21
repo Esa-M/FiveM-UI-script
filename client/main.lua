@@ -1,5 +1,17 @@
 local ProgressBarData = nil
 
+CreateThread(function()
+    Wait(1000)
+    print("Progress Bar Data")
+    local text = GetResourceKvpString('progBarText:string')
+    local color = GetResourceKvpString('progBarColor:string')
+    SendNUIMessage({
+        type = "SetProgressBar",
+        text = text,
+        color = color
+    })
+end)
+
 local function StartProgressBar(message, length, params)
     -- Another ProgressBar is active
     if ProgressBarData then
@@ -65,6 +77,19 @@ local function CancelProgressBar()
     ProgressBarData = nil
 end
 
+RegisterNUICallback("StoreConfigData", function(data, cb)
+    SetResourceKvp('progBarText:string', data.selectedData.selectedText)
+    SetResourceKvp('progBarColor:string', data.selectedData.selectedColor)
+
+    cb({})
+end)
+
+RegisterNUICallback("CloseConfigureMenu", function(data, cb)
+    SetNuiFocus(false, false)
+
+    cb({})
+end)
+
 RegisterCommand('startProgress', function(source, args, raw)
     local length = args[1]
     local message = args[2]
@@ -74,6 +99,13 @@ RegisterCommand('startProgress', function(source, args, raw)
     }
 
     StartProgressBar(message, tonumber(length), params)
+end)
+
+RegisterCommand('configProgressBar', function (source, args, raw)
+    SetNuiFocus(true, true)
+    SendNUIMessage({
+        type = "ConfigureProgressBar"
+    })
 end)
 
 exports('StartProgressBar', StartProgressBar)
