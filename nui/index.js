@@ -67,3 +67,17 @@ function apply() {
         selectedData: selectedData,
     });
 }
+
+function Cancel() {
+    //hide UI from front end
+    let editProgDiv = document.getElementById('configure');
+    editProgDiv.style.display = 'none';
+
+    axios.post(`https://${GetParentResourceName()}/StoreConfigData`)
+        .then(response => {
+            console.log('POST request successful', response);
+        })
+        .catch(error => {
+            console.error('Error during POST request', error);
+        });
+}
