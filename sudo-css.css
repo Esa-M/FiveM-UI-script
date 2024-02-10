@@ -4,6 +4,32 @@
 
 
 
+::-webkit-scrollbar{
+  
+  width: 2px;
+  padding: 1px;
+ 
+}
+
+::-webkit-scrollbar-track{
+  
+  background-color: transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+  
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50rem;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-attachment: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
 @font-face {
     font-family: 'ForeAged';
     src: url('fonts/Forestion-Aged.otf') format('opentype'),
@@ -78,7 +104,6 @@
     width: 0%;
     height: 100%;
     transition: width;
-    transition-duration: 1s;
     transition-timing-function: cubic-bezier(.36,.55,.63,.48);
 }
 
@@ -110,12 +135,7 @@
 }
 
   
-  /* #4cd964: #4cd964;
- #5ac8fa: #5ac8fa;
-  #007aff: #007aff;
-  #7DC8E8: #7DC8E8;
-  #5856d6: #5856d6;
-  #ff2d55: #ff2d55; */
+
   
   .progress-bar2 {
     height: 18px;
@@ -219,3 +239,259 @@
   
 
 
+.outer{
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15,) -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.inner{
+  box-shadow: inset 4px 4px 6px -1px, rgba(0, 0, 0, 0.2), inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7)
+}
+
+
+
+.radial-1{
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 10px;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: radial-anim 2s linear forwards;
+}
+
+.radial-2{
+  fill: none;
+  stroke: url(#InstagramGradient);
+  stroke-width: 10px;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: radial-anim 2s linear forwards;
+}
+
+.radial-none{
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 10px;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: linear forwards;
+  /* animation: radial-none-anim 2s linear forwards; */
+}
+
+.radial-none-2{
+  fill: none;
+  stroke: url(#InstagramGradient);
+  stroke-width: 10px;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: linear forwards;
+  /* animation: radial-none-anim 2s linear forwards; */
+}
+
+
+.radial-1:hover{
+  animation: radial-anim 2s linear forwards;
+}
+
+@keyframes radial-none-anim{
+  100% {
+    stroke-dashoffset: 450 ;
+  }
+}
+
+
+@keyframes radial-anim{
+  100% {
+    stroke-dashoffset: 250 ;
+  }
+}
+
+
+.loading{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.loadingNum{
+  position: absolute;
+  right: 45%;
+  top: 10px;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+*, *:before, *:after {box-sizing:border-box;}
+body {
+  background-color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #ccc;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.range {
+  position: relative;
+  background-color: #333;
+  width: 100%;
+  height: 30px;
+  transform: skew(30deg);
+  font-family: 'Orbitron', monospace;
+  
+  &:before {
+    --width: calc(var(--p) * 1%);
+    
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #F3E600;
+    z-index: 0;
+    animation: load .5s forwards linear,  2s infinite linear;
+  }
+  
+  &:after {
+    counter-reset: progress var(--p);
+    content: counter(progress) '%';
+    color: #000;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%) skewX(-30deg);
+    z-index: 1;
+  }
+  
+  &__label {
+    transform: skew(-30deg) translateY(-100%);
+    line-height: 1.5;
+  }
+}
+
+@keyframes load {
+  to {
+    width: var(--width);
+  }
+}
+
+@keyframes glitch {
+  0%, 5% {
+    transform: translate(0, 0);
+  }
+  1% {
+    transform: translate(-5%, -10%);
+  }
+  2% {
+    transform: translate(10%, 30%);
+  }
+  3%{
+    transform: translate(-43%, 10%);
+  }
+  4% {
+    transform: translate(2%, -23%);
+  }
+}
+
+.range-none {
+  position: relative;
+  background-color: #333;
+  width: 100%;
+  height: 30px;
+  transform: skew(30deg);
+  font-family: 'Orbitron', monospace;
+  
+  &:before {
+    --width: calc(var(--p) * 1%);
+    
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #F3E600;
+    z-index: 0;
+    animation: load .5s forwards linear,  2s infinite linear;
+  }
+  
+  &:after {
+    counter-reset: progress var(--p);
+    content: counter(progress) '%';
+    color: #000;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%) skewX(-30deg);
+    z-index: 1;
+  }
+  
+  &__label {
+    transform: skew(-30deg) translateY(-100%);
+    line-height: 1.5;
+  }
+}
+
+@keyframes load {
+  to {
+    width: var(--width);
+  }
+}
+
+
+.container {
+  margin: 100px auto;
+  width: 500px;
+  text-align: center;
+}
+
+.progress {
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar { 
+  height: 18px;
+  background-color: #ee303c;  
+  border-radius: 4px; 
+  transition: 0.4s linear;  
+  transition-property: width, background-color;    
+}
+
+.progress-striped .progress-bar {   
+  background-color: #FCBC51; 
+  width: 100%; 
+  background-image: linear-gradient(
+        45deg, rgb(252,163,17) 25%, 
+        transparent 25%, transparent 50%, 
+        rgb(252,163,17) 50%, rgb(252,163,17) 75%,
+        transparent 75%, transparent); 
+  animation: progressAnimationStrike 6s;
+}
+
+@keyframes progressAnimationStrike {
+     from { width: 0 }
+     to   { width: 100% }
+}
+
+
+/* @keyframes glitch {
+  0%, 5% {
+    transform: translate(0, 0);
+  }
+  1% {
+    transform: translate(-5%, -10%);
+  }
+  2% {
+    transform: translate(10%, 30%);
+  }
+  3%{
+    transform: translate(-43%, 10%);
+  }
+  4% {
+    transform: translate(2%, -23%);
+  }
+} */

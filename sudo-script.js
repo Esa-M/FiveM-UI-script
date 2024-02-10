@@ -7,15 +7,14 @@ let cloneNodeIdx  = null
 
 
 
-
-const targettedWidth = 100
+const animationDuration = 10000
+const targettedWidth = 250
 
 
 
 ProgressBar.forEach((Prog)=>{
+    
     Prog.addEventListener('click', (e)=>{
-
-
          cloneNodeIdx = Prog.getAttribute('data-color-index');
         if(cloneNode){
             ProgsPreview.removeChild(cloneNode)
@@ -26,29 +25,41 @@ ProgressBar.forEach((Prog)=>{
         cloneNode.classList.add("w-4/5")
         ProgsPreview.appendChild(cloneNode)
         
+        
 
 
         if(parseInt(cloneNodeIdx) == 0){
            
 
             const progressBarRandomTime ={
-              zero : 20,
+              zero : 0,
             }
-            let bar = cloneNode.querySelectorAll(".bar")
-            let progress = cloneNode.querySelectorAll(".progress")
-
-            bar = bar[0] , progress = progress[0]
+            let bar = cloneNode.querySelectorAll(".bar")[0]
+            let progress = cloneNode.querySelectorAll(".progress")[0]
+            progress.classList.add("loading")
+            progress.style.width =`${targettedWidth}px`
+            progress.style.backgroundColor ="transparent"
             bar.style.width = `${progressBarRandomTime.zero}%`
-            progress.style.backgroundColor = "transparent"
-            const animationDuration = 20000
-
+            
+            console.log(progress.style.width)
+            
+            
             let increment = (targettedWidth - progressBarRandomTime.zero ) / ( animationDuration / 10 )
+            const loadingNum =  document.createElement("div")
+            loadingNum.classList.add("GTA")
+            loadingNum.classList.add("text-2xl")
+            loadingNum.classList.add("loadingNum")
+            loadingNum.classList.add("self-center")
+            bar.appendChild(loadingNum)
 
+            
+             
+            
             let interval = setInterval(()=>{
               progressBarRandomTime.zero += increment
               bar.style.width = `${progressBarRandomTime.zero}%`
               
-
+              loadingNum.innerText = parseInt(((parseInt(bar.style.width))  * 100 ) / 250 )
               if( progressBarRandomTime.zero >= targettedWidth){
                 clearInterval(interval)
               }
@@ -59,35 +70,130 @@ ProgressBar.forEach((Prog)=>{
 
         if(parseInt(cloneNodeIdx) == 1){
            
-
           const progressBarRandomTime ={
-            zero : 20,
+            zero : 0,
           }
-          let bar = cloneNode.querySelectorAll(".bar")
-          let progress = cloneNode.querySelectorAll(".progress")
-
-          bar = bar[0] , progress = progress[0]
+          let bar = cloneNode.querySelectorAll(".bar")[0]
+          let progress = cloneNode.querySelectorAll(".progress")[0]
+          progress.classList.add("loading")
+          progress.style.width =`${targettedWidth}px`
+          progress.style.backgroundColor ="transparent"
           bar.style.width = `${progressBarRandomTime.zero}%`
-          progress.style.height ='h-16'
-          progress.style.backgroundColor = "transparent"
-
-          const animationDuration = 20000
-
+          
+          
+          
+          
           let increment = (targettedWidth - progressBarRandomTime.zero ) / ( animationDuration / 10 )
+          const loadingNum =  document.createElement("div")
+          loadingNum.classList.add("GTA")
+          loadingNum.classList.add("text-2xl")
+          loadingNum.classList.add("loadingNum")
+          loadingNum.classList.add("self-center")
+          bar.appendChild(loadingNum)
 
+          
+           
+          
           let interval = setInterval(()=>{
             progressBarRandomTime.zero += increment
             bar.style.width = `${progressBarRandomTime.zero}%`
             
-
+            loadingNum.innerText = parseInt(((parseInt(bar.style.width))  * 100 ) / 250 )
             if( progressBarRandomTime.zero >= targettedWidth){
               clearInterval(interval)
             }
 
           }, 10)
-        
       }
+        if(parseInt(cloneNodeIdx) == 2){
+          
+          let target = 500
+          const circle = cloneNode.querySelectorAll(".radial-1")[0]
+          const innerElement = cloneNode.querySelectorAll(".inner")[0]
+
+          const loadingNum = document.createElement("div")
+          loadingNum.classList.add("self-center")
+          loadingNum.classList.add("GTA")
+          loadingNum.classList.add("text-2xl")
+          innerElement.appendChild(loadingNum)
+
+          
+          circle.classList.remove("radial-1")
+          circle.classList.add("radial-none")
+          circle.style.strokeDashoffset = 500
+
+          let increment = ( target  - 250) / (animationDuration / 10)
+          let init = 0
+          let interval = setInterval(()=>{
+            target -= increment
+            circle.style.strokeDashoffset = target
+            init = init + increment
+            loadingNum.innerText = parseInt(( init * 100 ) / 250)
+           if( target <= 250){
+                clearInterval(interval)
+           }
+          }, 10)
+
+
         
+        }
+        if(parseInt(cloneNodeIdx) == 3){
+          
+          let target = 500
+          const circle = cloneNode.querySelectorAll(".radial-2")[0]
+          const innerElement = cloneNode.querySelectorAll(".inner")[0]
+
+          const loadingNum = document.createElement("div")
+          loadingNum.classList.add("self-center")
+          loadingNum.classList.add("GTA")
+          loadingNum.classList.add("text-2xl")
+        
+          innerElement.appendChild(loadingNum)
+
+         
+          circle.classList.remove("radial-1")
+          circle.classList.add("radial-none-2")
+          circle.style.strokeDashoffset = 500
+
+          let increment = ( target  - 250) / (animationDuration / 10)
+          let init = 0
+          let interval = setInterval(()=>{
+            target -= increment
+            circle.style.strokeDashoffset = target
+            init = init + increment
+            loadingNum.innerText = parseInt(( init * 100 ) / 250)
+           if( target <= 250){
+                clearInterval(interval)
+           }
+          }, 10)
+
+
+        
+        }
+
+        if(parseInt(cloneNodeIdx) == 4 ){
+          const targetWidth = 100
+          let currentWidth = 0
+          const currentElement = cloneNode.querySelectorAll(".range")[0]
+          currentElement.classList.remove("range")
+          currentElement.classList.add("range-none")
+        
+          currentElement.setAttribute("style", `--p:${currentWidth}`)
+
+          let increment = (targetWidth - currentWidth) / ( animationDuration / 10)
+
+          let interval = setInterval(()=>{
+
+            currentWidth += increment
+            currentElement.setAttribute("style", `--p:${parseInt(currentWidth)}`)
+
+            if(currentWidth >= targetWidth){
+              clearInterval(interval)
+            }
+
+          },10)
+         
+        }
          
     })
 })
