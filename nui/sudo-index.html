@@ -9,35 +9,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/base.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/components.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/utilities.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body class="flex justify-center align-middle" id="root-container">
-    <div class="w-96  min-w-96 p-1 rounded-xl flex flex-col justify-center align-middle" id="menu-container">
+<body class="flex justif[y-center align-middle" id="root-container">
+    <div id="progbar" class="" style="display: block; width: 250px;"></div>
+    <div class="w-96  min-w-96 p-1 rounded-xl flex flex-col justify-center align-middle" id="menu-container" style="display: block">
         <span class="GTA text-white mt-5 text-center p-1 text-4xl font-semibold">progress bar settings</span>
         <div class="flex flex-col justify-center text-center align-middle w-2/3 p-5 ">
             <div class=" border-2 border-black h-64 rounded-md flex flex-col justify-center align-middle gap-3   ">
                 <div class="h-full z-50 w-full flex flex-col gap-3 overflow-y-auto p-3 ">
 
-                    <div id="progs" data-color-index=0>
+                    <div id="progs" data-color-index=1>
                         <div class="progress self-center cursor-pointer w-full" id="progs">
                             <div class="bar shadow food"></div>
                         </div>
                     </div>
 
-                    <div id="progs" data-color-index=1>
+                    <div id="progs" data-color-index=2>
                         <div class="progress self-center cursor-pointer w-full" id="progs">
                             <div class="bar shadow gta"></div>
                         </div>
-                    </div>
+                    </div>  
 
-                    <div id="progs" data-color-index=2>
-                        <div class="h-24 w-full relative  self-center flex justify-center align-middle">
-                            <div class="self-center h-24 w-24 cursor-pointer  relative">
+                    <div id="progs" data-color-index=3>
+                        <div class="h-24 w-full relative self-center flex justify-center align-middle">
+                            <div class="self-center h-24 w-24 cursor-pointer relative">
                                 <div class="w-full h-full p-4 rounded-full progress  outer">
                                     <div
-                                        class="w-16 h-16 rounded-full flex justify-center align-middle progress  inner">
+                                        class="w-16 h-16 rounded-full flex justify-center align-middle progress inner">
                                         <div class="self-center GTA text-2xl percentage-num">100</div>
-                                        <!-- <img src="./assets/randomLogo.png" class="bg-cover bg-no-repeat h-16 w-16 self-center" alt=""> -->
                                     </div>
                                 </div>
                                 <svg xmlns="https://www.w3.org/2000/svg" version="1.1"
@@ -54,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div id="progs" data-color-index=3>
+                    <div id="progs" data-color-index=4>
                         <div class="h-24 w-full relative  self-center flex justify-center align-middle">
                             <div class="self-center h-24 w-24 cursor-pointer  relative">
                                 <div class="w-full h-full p-4 rounded-full progress outer">
@@ -79,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div id="progs" data-color-index = 4>
+                    <div id="progs" data-color-index = 5>
                         <div class="range progress " style="--p:100">
                             <div class="range__label progress"></div>
                         </div>
@@ -89,12 +90,12 @@
         </div>
 
         <div class="GTA p-1 self-center text-center text-xl text-white"> free edit</div>
-        <div class=" rounded-sm flex flex-col justify-center align-middle p-5 items-center" id="prog-preview">
+        <div class=" rounded-sm flex flex-col justify-center align-middle p-5 items-center"style="width: 250px;"  id="prog-preview">
         </div>
 
         <div class="flex flex-row justify-center h-8 gap-5 text-white mb-5 align-middle">
-            <div class="GTA cursor-pointer text-2xl "> Apply </div>
-            <div class="GTA text-2xl">Cancel</div>
+            <div class="GTA cursor-pointer text-2xl " onclick="apply()"> Apply </div>
+            <div class="GTA text-2xl cursor-pointer"  onclick="Cancel()" >Cancel</div>
         </div>
     </div>
 
