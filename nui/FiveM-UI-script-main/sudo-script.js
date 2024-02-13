@@ -6,7 +6,7 @@ let cloneNode = null
 let cloneNodeIdx  = null
 
 
-
+// overall progress bar animation duration depends on the below const variable animationDuration
 const animationDuration = 5000
 const targettedWidth = 250
 
@@ -54,7 +54,7 @@ bars.forEach((bar, index) => {
 
 
 
-
+// changed separated functions for animation as of now it only needs these 3 functions
 
 const ProgressTheme1 = (ProgressNode) => {
   const target = 90
