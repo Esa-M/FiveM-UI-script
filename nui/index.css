@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'ForeAged';
+    src: url('fonts/Forestion-Aged.otf') format('opentype'),
+        url('fonts/Forestion-Aged.ttf') format('truetype');
+}
+
+body {
+    background: transparent;
+}
+
+.edit-menu {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-prog {
+    position: absolute;
+    height: 600px;
+    width: 400px;
+    border-radius: 20px;
+    border: 1px solid rgb(131, 199, 20);
+    text-align: center;
+    padding: 8px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 22px;
+    display: inline;
+    font-family: 'ForeAged', sans-serif;
+}
+
+.edit-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.prog-lists {
+    height: 230px;
+    width: 200px;
+    border-radius: 20px;
+    border: 1px solid red;
+    overflow-y: scroll;
+}
+
+.prog-lists::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.prog-lists {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.progs {
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.prog-colors {
+    margin-left: 10px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.colors-title {
+    font-weight: 700;
+    font-size: 22px;
+    font-family: 'ForeAged', sans-serif;
+    text-align: center;
+    justify-content: center;
+}
+
+.color-picker-img {
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.preview-color {
+    height: 35px;
+    width: 70px;
+    border: 1px solid rgba(245, 12, 245, 0);
+    border-radius: 7px;
+    margin-left: 7px;
+    margin-top: 15px;
+}
+
+.prog-preview {
+    height: 70px;
+    width: 350px;
+    border-radius: 10px;
+    background-color: rgba(124, 124, 124, 0.521);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.progs.active {
+    background-color: #e0e0e0;
+}
+
+.free-edit {
+    font-weight: 700;
+    font-size: 22px;
+    font-family: 'ForeAged', sans-serif;
+    text-align: center;
+    justify-content: center;
+    display: inline;
+}
+
+.color-pallets {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.colors {
+    height: 18px;
+    width: 18px;
+    border: 2px solid #27272763;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(90, 90, 90);
+    margin-right: 5px;
+    margin-top: 15px;
+}

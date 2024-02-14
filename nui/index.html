@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Progress Bar</title>
+</head>
+<body>
+    <progress id="progbar" max="100" style="display: none"></progress>
+    <div class="edit-menu">
+        <div class="edit-prog" id="configure" style="display: none">
+            <p class="title">Progress Bar Settings</p>
+            <div class="edit-container">
+                <div class="prog-lists" id="prog-lists">
+                    <div class="progs active" onclick="showContent(this)" id="1">1</div>
+                    <div class="progs" onclick="showContent(this)" id="2">2</div>
+                    <div class="progs" onclick="showContent(this)" id="3">3</div>
+                    <div class="progs" onclick="showContent(this)" id="4">4</div>
+                    <div class="progs" onclick="showContent(this)" id="5">5</div>
+                    <div class="progs" onclick="showContent(this)" id="6">6</div>
+                    <div class="progs" onclick="showContent(this)" id="7">7</div>
+                    <div class="progs" onclick="showContent(this)" id="8">8</div>
+                    <div class="progs" onclick="showContent(this)" id="9">9</div>
+                    <div class="progs" onclick="showContent(this)" id="10">10</div>
+                </div>
+                <div class="prog-colors">
+                    <span class="colors-title">COLOR</span>
+                    <label for="create-color">
+                        <img class="color-picker-img" src="./assets/paint.svg" alt="color-picker">
+                        <input type="color" id="create-color"
+                            style="opacity: 0; visibility: hidden; position: absolute; left: 95%; top: 10%;"
+                            onchange="changeColor()">
+                    </label>
+                    <div class="color-pallets" onclick="setColor(event)">
+                        <div class="colors" style="background-color: #FF0000;"></div>
+                        <div class="colors" style="background-color: #00FF00;"></div>
+                        <div class="colors" style="background-color: #0000FF;"></div>
+                        <div class="colors" style="background-color: #FFFF00;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-container">
+                <div class="prog-preview" id="prog-preview" style="background-color: #0000FF;"></div>
+                <p class="free-edit">Free Edit</p>
+            </div>
+            <button class="apply-btn" onclick="apply()">APPLY</button>
+            <button class="apply-btn" onclick="Cancel()">CANCEL</button>
+        </div>
+    </div>
+
+    <script src="./index.js" type="text/javascript"></script>
+</body>
+</html>
